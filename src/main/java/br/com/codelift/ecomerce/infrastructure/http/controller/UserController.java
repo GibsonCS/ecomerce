@@ -1,6 +1,6 @@
-package br.com.codelift.ecomerce.controller;
+package br.com.codelift.ecomerce.infrastructure.http.controller;
 
-import br.com.codelift.ecomerce.controller.dto.CreateUserRequest;
+import br.com.codelift.ecomerce.infrastructure.http.dto.CreateUserRequest;
 import br.com.codelift.ecomerce.usecase.CreateUser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ public class UserController {
    @PostMapping
    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest) throws Exception {
       try {
-         Long userID = createUser.execute(createUserRequest.getName(), createUserRequest.getLogin(), createUserRequest.getPassowrd());
+         Long userID = createUser.execute(createUserRequest.name(), createUserRequest.login(), createUserRequest.password());
          return ResponseEntity.status(201).body(Map.of("id", userID));
 
       } catch (Exception e) {
