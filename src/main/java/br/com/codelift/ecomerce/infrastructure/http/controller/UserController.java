@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
    private final CreateUser createUser;
 
@@ -22,7 +22,7 @@ public class UserController {
    @PostMapping
    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest) throws Exception {
       try {
-         Long userID = createUser.execute(createUserRequest.name(), createUserRequest.login(), createUserRequest.password());
+         Long userID = createUser.execute(createUserRequest.name(), createUserRequest.login(), createUserRequest.email(), createUserRequest.password());
          return ResponseEntity.status(201).body(Map.of("id", userID));
 
       } catch (Exception e) {

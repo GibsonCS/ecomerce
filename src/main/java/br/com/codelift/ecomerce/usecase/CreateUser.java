@@ -15,11 +15,11 @@ public class CreateUser {
       this.userRepository = userRepository;
    }
 
-   public Long execute(String name, String login, String password) throws Exception {
+   public Long execute(String name, String login, String email, String password) throws Exception {
       Optional<UserEntity> userFound = this.userRepository.findByLogin(login);
       if(userFound.isPresent()) throw  new Exception("Username already exists");
 
-      User user = new User(name, login, password);
+      User user = new User(name, login, email, password);
 
       return this.userRepository.save(user.getName(), user.getLogin(), user.getPassword());
    }

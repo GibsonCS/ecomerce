@@ -12,6 +12,15 @@ public class UserEntity {
    private String name;
    private String login;
    private String password;
+   private String email;
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
    public UserEntity() {
    }
@@ -20,6 +29,7 @@ public class UserEntity {
       this.name = name;
       this.login = login;
       this.password = password;
+
    }
 
    public Long getId() {
@@ -61,6 +71,7 @@ public class UserEntity {
               ", name='" + name + '\'' +
               ", login='" + login + '\'' +
               ", password='" + password + '\'' +
+               ", email='" + email +
               '}';
    }
 }
