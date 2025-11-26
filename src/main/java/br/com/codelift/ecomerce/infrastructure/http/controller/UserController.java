@@ -2,6 +2,10 @@ package br.com.codelift.ecomerce.infrastructure.http.controller;
 
 import br.com.codelift.ecomerce.infrastructure.http.dto.CreateUserRequest;
 import br.com.codelift.ecomerce.usecase.CreateUser;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,11 @@ public class UserController {
       this.createUser = createUser;
    }
 
+   @Operation(
+           tags = {"User Management"}, summary = "Create User",
+           responses = {@ApiResponse(responseCode = "201", description = "user created",
+                   content = @Content(mediaType = "application/json",
+                           schema = @Schema(example = "{id: int}")))})
    @PostMapping
    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest createUserRequest) throws Exception {
       try {
