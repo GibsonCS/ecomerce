@@ -2,76 +2,86 @@ package br.com.codelift.ecomerce.infrastructure.persister;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
+
 public class UserEntity {
 
-   @Id()
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-   private String name;
-   private String login;
-   private String password;
-   private String email;
+    @Id()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String login;
+    private String password;
+    private String email;
 
-   public String getEmail() {
-      return email;
-   }
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<RoleEntity> roles;
 
-   public void setEmail(String email) {
-      this.email = email;
-   }
+    public UserEntity() {
+    }
 
-   public UserEntity() {
-   }
+    public UserEntity(String name, String login, String password) {
+        this.name = name;
+        this.login = login;
+        this.password = password;
 
-   public UserEntity(String name, String login, String password) {
-      this.name = name;
-      this.login = login;
-      this.password = password;
+    }
 
-   }
+    public String getEmail() {
+        return email;
+    }
 
-   public Long getId() {
-      return id;
-   }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-   public void setId(Long id) {
-      this.id = id;
-   }
+    public Long getId() {
+        return id;
+    }
 
-   public String getName() {
-      return name;
-   }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-   public void setName(String name) {
-      this.name = name;
-   }
+    public String getName() {
+        return name;
+    }
 
-   public String getLogin() {
-      return login;
-   }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-   public void setLogin(String login) {
-      this.login = login;
-   }
+    public String getLogin() {
+        return login;
+    }
 
-   public String getPassword() {
-      return password;
-   }
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-   public void setPassword(String password) {
-      this.password = password;
-   }
+    public String getPassword() {
+        return password;
+    }
 
-   @Override
-   public String toString() {
-      return "UserEntity{" +
-              "id=" + id +
-              ", name='" + name + '\'' +
-              ", login='" + login + '\'' +
-              ", password='" + password + '\'' +
-               ", email='" + email +
-              '}';
-   }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email +
+                '}';
+    }
 }
