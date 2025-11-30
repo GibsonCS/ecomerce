@@ -34,7 +34,7 @@ class CreateUserTest {
       when(userRepositoryH2.findByLogin("gibson")).thenReturn(Optional.empty());
 
       Exception e = assertThrows(Exception.class, () ->
-              createUser.execute("as", EXISTING_USERNAME, "asdasd"));
+              createUser.execute("as", "gibsod", "asdasd", "asdasd"));
 
       assertEquals(NAME_TOO_SHORT_MESSAGE, e.getMessage());
       verify(userRepositoryH2).findByLogin(EXISTING_USERNAME);
@@ -48,7 +48,7 @@ class CreateUserTest {
       when(userRepositoryH2.findByLogin(EXISTING_USERNAME)).thenReturn(Optional.of(userEntity));
 
       Exception e = assertThrows(Exception.class, () ->
-              createUser.execute("Gibson", EXISTING_USERNAME, "125"));
+              createUser.execute("Gibson", "gibson", "gibson@gibson", "123"));
 
       assertEquals(USERNAME_EXISTS_MESSAGE, e.getMessage());
       verify(userRepositoryH2).findByLogin(EXISTING_USERNAME);
