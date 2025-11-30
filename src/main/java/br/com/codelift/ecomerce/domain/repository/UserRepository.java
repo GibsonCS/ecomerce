@@ -5,7 +5,7 @@ import br.com.codelift.ecomerce.infrastructure.persister.UserEntity;
 import java.util.Optional;
 
 public interface UserRepository {
-   Long save(String name, String login, String password);
+   Long save(String name, String login, String email, String password);
 
    Optional<UserEntity> findByLogin(String login);
 }

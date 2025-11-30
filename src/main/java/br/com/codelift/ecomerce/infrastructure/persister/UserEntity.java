@@ -17,6 +17,14 @@ public class UserEntity {
     private String password;
     private String email;
 
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
     @ManyToMany
     @JoinTable(
             joinColumns = @JoinColumn(name = "user_id"),
@@ -27,7 +35,7 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String name, String login, String password) {
+    public UserEntity(String name, String login, String email, String password) {
         this.name = name;
         this.login = login;
         this.password = password;

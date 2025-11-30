@@ -21,6 +21,6 @@ public class CreateUser {
 
       User user = new User(name, login, email, password);
 
-      return this.userRepository.save(user.getName(), user.getLogin(), user.getPassword());
+      return this.userRepository.save(user.getName(), user.getLogin(), user.getEmail(), user.getPassword());
    }
 }
